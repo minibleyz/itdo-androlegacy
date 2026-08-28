@@ -25,14 +25,17 @@ jobs:
         run: |
           sdkmanager "platforms;android-23" "build-tools;23.0.3"
 
-      - name: Set up JDK 8 (for Gradle build)
+      - name: Set up JDK 8 (for Gradle 3.5 build)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '8'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew || true
+      - name: Download Gradle 3.5
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-3.5-bin.zip -O /tmp/gradle-3.5.zip
+          unzip -q /tmp/gradle-3.5.zip -d /opt
+          echo "/opt/gradle-3.5/bin" >> $GITHUB_PATH
 
       - name: Build debug APK
         run: gradle assembleDebug --stacktrace
