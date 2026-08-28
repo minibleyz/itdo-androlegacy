@@ -8,22 +8,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_ROOT: /opt/android-sdk-legacy
+      ANDROID_HOME: /opt/android-sdk-legacy
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17 (for Android SDK tools)
+      - name: Set up JDK 17 (for sdkmanager)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install legacy build-tools & platform
+      - name: Download fresh cmdline-tools into isolated SDK dir
         run: |
-          sdkmanager "platforms;android-23" "build-tools;23.0.3"
+          mkdir -p /opt/android-sdk-legacy/cmdline-tools
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O /tmp/cmdline-tools.zip
+          unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk-legacy/cmdline-tools
+          mv /opt/android-sdk-legacy/cmdline-tools/cmdline-tools /opt/android-sdk-legacy/cmdline-tools/latest
+
+      - name: Install only required platform & build-tools
+        run: |
+          yes | /opt/android-sdk-legacy/cmdline-tools/latest/bin/sdkmanager --sdk_root=/opt/android-sdk-legacy "platforms;android-28" "build-tools;28.0.3" "platform-tools"
 
       - name: Set up JDK 8 (for Gradle 4.10.2 build)
         uses: actions/setup-java@v4
