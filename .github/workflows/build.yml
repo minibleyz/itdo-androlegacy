@@ -15,28 +15,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17 (for sdkmanager)
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Download fresh cmdline-tools into isolated SDK dir
-        run: |
-          mkdir -p /opt/android-sdk-legacy/cmdline-tools
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O /tmp/cmdline-tools.zip
-          unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk-legacy/cmdline-tools
-          mv /opt/android-sdk-legacy/cmdline-tools/cmdline-tools /opt/android-sdk-legacy/cmdline-tools/latest
-
-      - name: Install only required platform & build-tools
-        run: |
-          yes | /opt/android-sdk-legacy/cmdline-tools/latest/bin/sdkmanager --sdk_root=/opt/android-sdk-legacy "platforms;android-28" "build-tools;28.0.3" "platform-tools"
-
-      - name: Set up JDK 8 (for Gradle 4.10.2 build)
+      - name: Set up JDK 8
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '8'
+
+      - name: Download legacy SDK Tools 25.2.5 (writes old-schema package.xml)
+        run: |
+          mkdir -p /opt/android-sdk-legacy
+          wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O /tmp/tools.zip
+          unzip -q /tmp/tools.zip -d /opt/android-sdk-legacy
+
+      - name: Install platform & build-tools via legacy sdkmanager
+        run: |
+          yes | /opt/android-sdk-legacy/tools/bin/sdkmanager "platforms;android-28" "build-tools;28.0.3" "platform-tools"
 
       - name: Download Gradle 4.10.2
         run: |
