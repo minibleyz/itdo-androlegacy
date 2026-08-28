@@ -27,10 +27,11 @@ android {
 
 configurations.all {
     resolutionStrategy {
-        // Retrofit 2.9.0 тянет okhttp 3.14.x транзитивно, а он использует Java 8
-        // байткод (invoke-dynamic, static interface methods), несовместимый с minSdk 14.
-        // Фиксируем последнюю версию okhttp из "Java 7 / API 9+" ветки 3.12.x.
+        // okhttp 3.13+ и retrofit 2.5+ используют Java 8 байткод (invoke-dynamic,
+        // static/default interface methods), несовместимый без десугаринга с minSdk < 24/26.
+        // Фиксируем последние версии из "чистой Java 7" эпохи.
         force 'com.squareup.okhttp3:okhttp:3.12.13'
+        force 'com.squareup.retrofit2:retrofit:2.4.0'
     }
 }
 
@@ -40,10 +41,10 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:23.4.0'
     implementation 'com.android.support:cardview-v7:23.4.0'
 
-    // Сеть — легаси, совместимо с очень старыми API (без OkHttp 4.x, ему нужен API 21+)
+    // Сеть — легаси, совместимо с очень старыми API (без OkHttp 4.x / Retrofit 2.5+, им нужен Java 8 / API 21+)
     implementation 'com.squareup.okhttp3:okhttp:3.12.13'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     testImplementation 'junit:junit:4.12'
 }
