@@ -2,7 +2,12 @@
 <resources>
 
     <!-- Классическая Material тема образца 2015 года (Lollipop/Marshmallow), Support Library design. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- NoActionBar: активность сама ставит кастомный Toolbar через setSupportActionBar().
+         С DarkActionBar тема даёт встроенный window action bar, и вызов
+         setSupportActionBar() падает с IllegalStateException
+         "This Activity already has an action bar supplied by the window decor" —
+         именно из-за этого приложение крашилось на старте. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
