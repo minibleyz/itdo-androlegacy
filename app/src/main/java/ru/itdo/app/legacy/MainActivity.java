@@ -1,8 +1,5 @@
 package ru.itdo.app.legacy;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -11,11 +8,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
 
-    // Начиная с этой версии Android рекомендуем современный клиент itdo-android
-    // (Compose, minSdk 23) вместо этой legacy-сборки для старых устройств.
-    private static final int RECOMMEND_MODERN_APP_FROM_SDK = Build.VERSION_CODES.M; // API 23, Android 6.0
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +24,21 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        List<String> items = Arrays.asList(
+                "Чаты",
+                "Группы",
+                "Боты",
+                "Подарки",
+                "Настройки"
+        );
+
+        recyclerView.setAdapter(new LegacyItemsAdapter(items, new LegacyItemsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String item) {
+                Snackbar.make(recyclerView, item, Snackbar.LENGTH_SHORT).show();
+            }
+        }));
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
@@ -35,25 +46,5 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "itdo legacy client", Snackbar.LENGTH_SHORT).show();
             }
         });
-
-        if (Build.VERSION.SDK_INT >= RECOMMEND_MODERN_APP_FROM_SDK) {
-            showModernAppRecommendation();
-        }
-    }
-
-    private void showModernAppRecommendation() {
-        new AlertDialog.Builder(this)
-                .setTitle("Устаревшая версия приложения")
-                .setMessage("Это приложение создано для старых версий Android. " +
-                        "На вашем устройстве доступна современная версия itdo с более " +
-                        "актуальным дизайном и функциями. Рекомендуем установить её.")
-                .setCancelable(true)
-                .setPositiveButton("Понятно", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
     }
 }
