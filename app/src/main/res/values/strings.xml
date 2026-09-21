@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ITDO</string>
+
+    <string name="drawer_open">Открыть меню</string>
+    <string name="drawer_close">Закрыть меню</string>
+
+    <!-- Drawer: main -->
+    <string name="nav_feed">Лента</string>
+    <string name="nav_explore">Поиск</string>
+    <string name="nav_notifications">Уведомления</string>
+    <string name="nav_messages">Сообщения</string>
+    <string name="nav_profile">Профиль</string>
+
+    <!-- Drawer: media -->
+    <string name="section_media">Медиа</string>
+    <string name="nav_streams">Трансляции</string>
+    <string name="nav_clips">Клипы</string>
+    <string name="nav_articles">Статьи</string>
+    <string name="nav_events">Эвенты</string>
+    <string name="nav_playlists">Плейлисты</string>
+
+    <!-- Drawer: fun -->
+    <string name="section_fun">Развлечения</string>
+    <string name="nav_games">Игры</string>
+    <string name="nav_pixelbattle">Pixel Battle</string>
+
+    <!-- Drawer: ITDO -->
+    <string name="section_itdo">ITDO</string>
+    <string name="nav_pro">ITDO Pro</string>
+    <string name="nav_wallet">Кошелёк</string>
+    <string name="nav_leaderboard">Топ</string>
+    <string name="nav_quests">Квесты</string>
+    <string name="nav_agent">ITDO Agent</string>
+
+    <!-- Drawer: bottom -->
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_support">Поддержка</string>
+    <string name="nav_admin">Админ-панель</string>
+    <string name="nav_logout">Выйти</string>
+
+    <!-- Drawer: accounts -->
+    <string name="nav_add_account">Добавить аккаунт</string>
+    <string name="cd_avatar">Аватар</string>
+    <string name="cd_accounts">Аккаунты</string>
+
+    <!-- Toolbar / FAB -->
+    <string name="action_refresh">Обновить</string>
+    <string name="action_open_browser">Открыть в браузере</string>
+    <string name="fab_compose">Новый пост</string>
+
+    <!-- Errors / misc -->
+    <string name="error_title">Нет соединения</string>
+    <string name="error_text">Проверьте подключение к интернету и попробуйте снова.</string>
+    <string name="error_retry">Повторить</string>
+    <string name="no_app_found">Нет приложения для открытия этой ссылки</string>
+    <string name="download_started">Загрузка началась</string>
+    <string name="download_failed">Не удалось скачать файл</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design 1 palette, taken from the ITDO web theme -->
+    <color name="primary">#B0602F</color>
+    <color name="primary_dark">#8F4A2A</color>
+    <color name="accent">#B0602F</color>
+
+    <!-- Floating action button: light "tan" with dark glyph, like the site's buttons -->
+    <color name="fab">#D68A4C</color>
+    <color name="on_fab">#22190F</color>
+
+    <color name="window_bg">#22190F</color>
+    <color name="ic_launcher_background">#1A1816</color>
+    <color name="white">#FFFFFF</color>
+</resources>

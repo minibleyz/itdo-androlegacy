@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Secondary account avatar in the drawer header (top-right, like Gmail) -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="16dp"
+    android:background="@drawable/avatar_bg"
+    android:clickable="true"
+    android:clipToOutline="true"
+    android:focusable="true"
+    android:outlineProvider="background"
+    android:scaleType="centerCrop"
+    android:src="@drawable/default_avatar" />

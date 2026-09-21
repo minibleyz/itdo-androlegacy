@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gmail-style account header: banner, avatar, other accounts, name + handle, dropdown -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_header"
+    android:layout_width="match_parent"
+    android:layout_height="162dp">
+
+    <ImageView
+        android:id="@+id/header_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_banner" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/header_scrim" />
+
+    <FrameLayout
+        android:id="@+id/header_avatar_ring"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/avatar_ring"
+        android:clickable="true"
+        android:contentDescription="@string/cd_avatar"
+        android:focusable="true"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/header_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/avatar_bg"
+            android:clipToOutline="true"
+            android:importantForAccessibility="no"
+            android:outlineProvider="background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_avatar" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/header_other_avatars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/header_account_row"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/ripple_light"
+        android:clickable="true"
+        android:contentDescription="@string/cd_accounts"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:shadowColor="#66000000"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="@string/app_name"
+                android:textColor="#FFFFFFFF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/header_handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:shadowColor="#66000000"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textColor="#B3FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/header_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_arrow_drop_down"
+            android:tint="#FFFFFFFF" />
+    </LinearLayout>
+</FrameLayout>

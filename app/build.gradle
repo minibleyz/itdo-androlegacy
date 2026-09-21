@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Change the site here - BuildConfig.BASE_URL and the deep-link filter follow automatically.
+def siteHost = "itdo.bleyzos.ru"
+
+android {
+    namespace 'ru.bleyzos.itdo'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "ru.bleyzos.itdo"
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
+
+        buildConfigField "String", "BASE_URL", "\"https://${siteHost}\""
+        manifestPlaceholders = [siteHost: siteHost]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'androidx.webkit:webkit:1.12.1'
+}
