@@ -26,3 +26,5 @@ Android Studio (Ladybug+) → Open → папка проекта → Run.
 ## Сборка APK в облаке
 Залейте проект в репозиторий GitHub — workflow `.github/workflows/build.yml` соберёт
 `app-debug.apk` (вкладка Actions → Artifacts). Локально ничего ставить не нужно.
+
+Локально также работает `./gradlew assembleDebug` (Gradle wrapper 8.9 включён).
