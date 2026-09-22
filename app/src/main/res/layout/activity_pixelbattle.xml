@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/window_bg"
+    android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:titleTextColor="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ru.bleyzos.itdo.PixelBoardView
+                    android:id="@+id/board"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </ScrollView>
+        </HorizontalScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/selected_pixel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_bg"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/pixelbattle_pick_color"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_bg">
+
+        <LinearLayout
+            android:id="@+id/palette"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp" />
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/place_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_pill"
+        android:enabled="false"
+        android:text="@string/pixelbattle_place"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</LinearLayout>
