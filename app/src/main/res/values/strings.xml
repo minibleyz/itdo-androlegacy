@@ -58,4 +58,37 @@
     <string name="download_failed">Не удалось скачать файл</string>
     <string name="ok">OK</string>
     <string name="cancel">Отмена</string>
+
+    <!-- Auth -->
+    <string name="auth_subtitle_login">Войдите в аккаунт</string>
+    <string name="auth_subtitle_register">Создайте аккаунт</string>
+    <string name="auth_subtitle_confirm">Подтверждение почты</string>
+    <string name="hint_login">Логин или email</string>
+    <string name="hint_password">Пароль</string>
+    <string name="hint_name">Имя</string>
+    <string name="hint_username">Логин (a–z, 0–9, _)</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password_new">Пароль (минимум 8 символов)</string>
+    <string name="hint_code">Код из письма (6 цифр)</string>
+    <string name="btn_login">Войти</string>
+    <string name="btn_register">Создать аккаунт</string>
+    <string name="btn_confirm">Подтвердить</string>
+    <string name="btn_resend">Отправить код повторно</string>
+    <string name="btn_back">Назад</string>
+    <string name="btn_yandex">Войти через Яндекс</string>
+    <string name="switch_to_register">Нет аккаунта? Зарегистрироваться</string>
+    <string name="switch_to_login">Уже есть аккаунт? Войти</string>
+    <string name="confirm_hint">Мы отправили код подтверждения на %1$s. Код действует 10 минут.</string>
+    <string name="code_resent">Код отправлен повторно</string>
+    <string name="captcha_title">Проверка</string>
+    <string name="captcha_failed">Не удалось загрузить проверку hCaptcha. Проверьте интернет и попробуйте снова.</string>
+    <string name="totp_title">Код двухфакторной аутентификации</string>
+    <string name="err_network">Нет соединения с сервером</string>
+    <string name="err_generic">Не удалось выполнить запрос</string>
+    <string name="err_fill_all">Заполните все поля</string>
+    <string name="err_username">Логин: 3–30 символов, буквы, цифры и _</string>
+    <string name="err_email">Введите настоящий email</string>
+    <string name="err_password_short">Пароль минимум 8 символов</string>
+    <string name="err_code">Код должен состоять из 6 цифр</string>
+    <string name="err_banned">Аккаунт заблокирован</string>
 </resources>

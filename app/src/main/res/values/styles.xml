@@ -19,4 +19,21 @@
         <item name="android:windowBackground">@color/window_bg</item>
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <!-- Auth screens: dark card, Material 1 underline fields and raised buttons -->
+    <style name="AuthOverlay" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorAccent">#D68A4C</item>
+        <item name="colorControlActivated">#D68A4C</item>
+        <item name="colorControlNormal">#AB9578</item>
+        <item name="android:textColorHint">#AB9578</item>
+    </style>
+
+    <style name="AuthButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">#22190F</item>
+        <item name="android:minHeight">44dp</item>
+    </style>
+
+    <style name="AuthFlatButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">#D68A4C</item>
+    </style>
 </resources>

@@ -84,7 +84,10 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
     private static final String BRIDGE_NAME = "ITDOAndroid";
 
     /** Hosts that may be shown inside the app (site itself + Yandex ID sign-in). */
-    private static final String[] EXTRA_HOSTS = {"yandex.ru", "yandex.com", "ya.ru", "yastatic.net"};
+    private static final String[] EXTRA_HOSTS = {
+            "yandex.ru", "yandex.com", "ya.ru", "yastatic.net",
+            // S3 media storage
+            "4e9a429d-273c-460c-abcd-17b962c989ba.selstorage.ru"};
 
     private static final int DARK_BG = 0xFF22190F;
     private static final int LIGHT_BG = 0xFFFAF5EA;
@@ -105,6 +108,22 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
     private Runnable pendingDrawerAction;
     private String jsAfterReady;
     private boolean imeVisible;
+
+    // native sign-in
+    private boolean authOpen;
+    private final ActivityResultLauncher<Intent> authLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                authOpen = false;
+                int code = result.getResultCode();
+                if (code == RESULT_OK) {
+                    appState = new AppState();
+                    webView.loadUrl(START_URL);
+                } else if (code == AuthActivity.RESULT_WEB) {
+                    webView.loadUrl(BASE + "/login.html?web=1");
+                } else if (!hasSession()) {
+                    finish();
+                }
+            });
 
     // <input type=file>
     private ValueCallback<Uri[]> filePathCallback;
@@ -194,7 +213,11 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
             webView.restoreState(savedInstanceState);
         }
         if (webView.getUrl() == null) {
-            webView.loadUrl(initialUrl(getIntent()));
+            if (hasSession()) {
+                webView.loadUrl(initialUrl(getIntent()));
+            } else {
+                openAuth();
+            }
         }
         updateChrome();
     }
@@ -385,6 +408,17 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
 
     private void js(String code) {
         webView.evaluateJavascript("(function(){try{" + code + "}catch(e){}})();", null);
+    }
+
+    private boolean hasSession() {
+        String c = CookieManager.getInstance().getCookie(BASE);
+        return c != null && (c.contains("access_token=") || c.contains("refresh_token="));
+    }
+
+    private void openAuth() {
+        if (authOpen) return;
+        authOpen = true;
+        authLauncher.launch(new Intent(this, AuthActivity.class));
     }
 
     private void retry() {
@@ -599,6 +633,13 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
         scheme = scheme.toLowerCase(Locale.ROOT);
 
         if (scheme.equals("http") || scheme.equals("https")) {
+            // The web login page is replaced by the native sign-in screens
+            // (login.html?web=1 still opens it, e.g. for Yandex ID).
+            if (popupOwner == null && isSiteUrl(url) && "/login.html".equals(uri.getPath())
+                    && uri.getQueryParameter("web") == null) {
+                openAuth();
+                return true;
+            }
             if (isTrustedHost(uri.getHost())) return false;
         } else if (scheme.equals("about") || scheme.equals("blob")
                 || scheme.equals("data") || scheme.equals("javascript")) {

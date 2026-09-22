@@ -41,5 +41,11 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".AuthActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode|density|fontScale"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>
