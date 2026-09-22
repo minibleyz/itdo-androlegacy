@@ -41,5 +41,18 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+
+        <!-- Native screens (ITDO Pro, Wallet, Pixel Battle, Clips, Notifications, Top,
+             Quests, ITDO Agent, Settings). Not exported: launched only from within the app. -->
+        <activity android:name=".WalletActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ProActivity" android:exported="false" />
+        <activity android:name=".PixelBattleActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".ClipsActivity" android:exported="false" />
+        <activity android:name=".NotificationsActivity" android:exported="false" />
+        <activity android:name=".TopActivity" android:exported="false" />
+        <activity android:name=".QuestsActivity" android:exported="false" />
+        <activity android:name=".AgentConversationsActivity" android:exported="false" />
+        <activity android:name=".AgentChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".SettingsActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>
