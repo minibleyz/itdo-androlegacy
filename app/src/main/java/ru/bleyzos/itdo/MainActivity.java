@@ -75,6 +75,9 @@ import java.util.Locale;
  *   Gmail-style navigation drawer (banner, avatar, name/handle, account switcher, items).
  * - The site keeps running inside a WebView; itdo-android.js (assets) hides the web navigation
  *   and reports the current page / user / badges back to us.
+ * - A growing set of destinations (Wallet, ITDO Pro, Pixel Battle, Clips, Notifications, Top,
+ *   Quests, ITDO Agent, Settings) are native screens (DrawerItem.ACTIVITY) and never touch the
+ *   WebView at all; see DrawerItem.ALL for the full mapping.
  */
 public class MainActivity extends AppCompatActivity implements DrawerController.Host {
 
@@ -378,6 +381,9 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
                 break;
             case DrawerItem.LOGOUT:
                 runInSpa("logout()");
+                break;
+            case DrawerItem.ACTIVITY:
+                startActivity(new Intent(this, item.activityClass));
                 break;
             default:
                 break;

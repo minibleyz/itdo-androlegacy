@@ -42,10 +42,35 @@
             </intent-filter>
         </activity>
 
-        <activity
+<activity
             android:name=".AuthActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode|density|fontScale"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Native screens (ITDO Pro, Wallet, Pixel Battle, Clips, Notifications, Top,
+             Quests, ITDO Agent, Settings, Explore, Articles, Events, Playlists, Streams,
+             Games, Support). Not exported: launched only from within the app. -->
+        <activity android:name=".WalletActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ProActivity" android:exported="false" />
+        <activity android:name=".PixelBattleActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".ClipsActivity" android:exported="false" />
+        <activity android:name=".NotificationsActivity" android:exported="false" />
+        <activity android:name=".TopActivity" android:exported="false" />
+        <activity android:name=".QuestsActivity" android:exported="false" />
+        <activity android:name=".AgentConversationsActivity" android:exported="false" />
+        <activity android:name=".AgentChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".SettingsActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ExploreActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ArticlesActivity" android:exported="false" />
+        <activity android:name=".ArticleDetailActivity" android:exported="false" />
+        <activity android:name=".EventsActivity" android:exported="false" />
+        <activity android:name=".EventDetailActivity" android:exported="false" />
+        <activity android:name=".PlaylistsActivity" android:exported="false" />
+        <activity android:name=".PlaylistDetailActivity" android:exported="false" />
+        <activity android:name=".StreamsActivity" android:exported="false" />
+        <activity android:name=".GamesActivity" android:exported="false" />
+        <activity android:name=".SupportActivity" android:exported="false" />
+        <activity android:name=".SupportTicketActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

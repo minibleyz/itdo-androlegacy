@@ -91,4 +91,64 @@
     <string name="err_password_short">Пароль минимум 8 символов</string>
     <string name="err_code">Код должен состоять из 6 цифр</string>
     <string name="err_banned">Аккаунт заблокирован</string>
-</resources>
+    <!-- Native screens: Wallet, ITDO Pro, Pixel Battle, Clips, Notifications, Top, Quests,
+         ITDO Agent, Settings -->
+    <string name="screen_empty">Пока пусто</string>
+    <string name="screen_load_error">Не удалось загрузить. Потяните вниз, чтобы повторить.</string>
+
+    <!-- Wallet -->
+    <string name="wallet_balance">Баланс</string>
+    <string name="wallet_history">История операций</string>
+
+    <!-- ITDO Pro -->
+    <string name="pro_active_until">Активен до %1$s</string>
+    <string name="pro_not_active">ITDO Pro не активен</string>
+    <string name="pro_buy">Купить</string>
+    <string name="pro_plan_2w">2 недели</string>
+    <string name="pro_plan_month">Месяц</string>
+    <string name="pro_plan_halfyear">Полгода</string>
+    <string name="pro_plan_year">Год</string>
+    <string name="pro_perk_1">Дополнительные квесты каждый день</string>
+    <string name="pro_perk_2">Продвинутая модель ITDO Agent</string>
+    <string name="pro_perk_3">Значок Pro в профиле и сообщениях</string>
+    <string name="pro_perk_4">Доступ к обходу кулдауна в Pixel Battle для модераторов</string>
+
+    <!-- Pixel Battle -->
+    <string name="pixelbattle_place">Поставить пиксель</string>
+    <string name="pixelbattle_cooldown">Подождите %1$s с</string>
+    <string name="pixelbattle_pick_color">Выберите цвет</string>
+
+    <!-- Clips -->
+    <string name="clips_views">%1$s просмотров</string>
+
+    <!-- Notifications -->
+    <string name="notifications_mark_all_read">Прочитать всё</string>
+
+    <!-- Top -->
+    <string name="top_tab_coins">Монеты</string>
+    <string name="top_tab_followers">Подписчики</string>
+    <string name="top_tab_posts">Посты</string>
+    <string name="top_my_rank">Ваше место: %1$d из %2$d</string>
+
+    <!-- Quests -->
+    <string name="quests_pro_locked">Доступно в ITDO Pro</string>
+    <string name="quests_claim">Забрать награду</string>
+    <string name="quests_claimed">Получено</string>
+
+    <!-- Agent -->
+    <string name="agent_new_chat">Новая беседа</string>
+    <string name="agent_hint">Спросите что-нибудь у ITDO Agent…</string>
+    <string name="agent_send">Отправить</string>
+    <string name="agent_thinking">ITDO Agent печатает…</string>
+
+    <!-- Settings -->
+    <string name="settings_profile">Профиль</string>
+    <string name="settings_name">Имя</string>
+    <string name="settings_username">Юзернейм</string>
+    <string name="settings_privacy">Приватность</string>
+    <string name="settings_last_seen">Кто видит время последнего входа</string>
+    <string name="settings_last_seen_everyone">Все</string>
+    <string name="settings_last_seen_nobody">Никто</string>
+    <string name="settings_theme">Тёмная тема</string>
+    <string name="settings_save">Сохранить</string>
+    <string name="settings_saved">Настройки сохранены</string></resources>

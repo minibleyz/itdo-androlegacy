@@ -12,4 +12,13 @@
     <color name="window_bg">#22190F</color>
     <color name="ic_launcher_background">#1A1816</color>
     <color name="white">#FFFFFF</color>
+
+    <!-- Added for the native ITDO Pro / Wallet / Pixel Battle / Clips / Notifications /
+         Top / Quests / Agent / Settings screens. -->
+    <color name="card_bg">#2E2318</color>
+    <color name="card_bg_alt">#3A2C1D</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="positive">#7FC77F</color>
+    <color name="negative">#E06666</color>
+    <color name="gold">#D68A4C</color>
 </resources>
