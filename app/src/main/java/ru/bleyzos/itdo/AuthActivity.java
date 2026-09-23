@@ -2,8 +2,6 @@ package ru.bleyzos.itdo;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
@@ -28,8 +26,6 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 /**
@@ -48,9 +44,6 @@ public class AuthActivity extends AppCompatActivity {
     private static final int LOGIN = 0;
     private static final int REGISTER = 1;
     private static final int CONFIRM = 2;
-
-    private final ExecutorService io = Executors.newSingleThreadExecutor();
-    private final Handler main = new Handler(Looper.getMainLooper());
 
     private View panelLogin, panelRegister, panelConfirm, progress, card;
     private TextView subtitle, errorView, confirmHint;
@@ -166,7 +159,6 @@ public class AuthActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        io.shutdownNow();
         super.onDestroy();
     }
 
@@ -185,15 +177,12 @@ public class AuthActivity extends AppCompatActivity {
 
     /** Registration can be switched off on the server (registration_status.php). */
     private void loadStatus() {
-        io.execute(() -> {
-            final ApiClient.Result r = ApiClient.get("/api/auth/registration_status.php");
-            main.post(() -> {
-                if (isFinishing() || !r.ok() || r.json == null) return;
-                String key = r.json.optString("hcaptcha_sitekey", "");
-                if (!key.isEmpty()) sitekey = key;
-                boolean hide = r.json.optBoolean("registration_disabled") || r.json.optBoolean("hide_register_link");
-                btnToRegister.setVisibility(hide ? View.GONE : View.VISIBLE);
-            });
+        ApiClient.get(this, "/api/auth/registration_status.php", (json, error) -> {
+            if (isFinishing() || error != null || json == null) return;
+            String key = json.optString("hcaptcha_sitekey", "");
+            if (!key.isEmpty()) sitekey = key;
+            boolean hide = json.optBoolean("registration_disabled") || json.optBoolean("hide_register_link");
+            btnToRegister.setVisibility(hide ? View.GONE : View.VISIBLE);
         });
     }
 
@@ -224,22 +213,19 @@ public class AuthActivity extends AppCompatActivity {
         }
         setBusy(true);
         final JSONObject payload = body;
-        io.execute(() -> {
-            final ApiClient.Result r = ApiClient.post("/api/auth/login.php", payload);
-            main.post(() -> {
-                if (isFinishing()) return;
-                setBusy(false);
-                if (r.ok() && r.json != null && r.json.has("user")) {
-                    success();
-                } else if (r.json != null && r.json.optBoolean("two_factor_required")) {
-                    askTotp(id, pass);
-                } else if (r.json != null && r.json.optBoolean("banned")) {
-                    String reason = r.json.optString("ban_reason", "");
-                    showError(getString(R.string.err_banned) + (reason.isEmpty() ? "" : ": " + reason));
-                } else {
-                    showError(messageFor(r));
-                }
-            });
+        ApiClient.post(this, "/api/auth/login.php", payload, (json, error) -> {
+            if (isFinishing()) return;
+            setBusy(false);
+            if (error == null && json != null && json.has("user")) {
+                success();
+            } else if (json != null && json.optBoolean("two_factor_required")) {
+                askTotp(id, pass);
+            } else if (json != null && json.optBoolean("banned")) {
+                String reason = json.optString("ban_reason", "");
+                showError(getString(R.string.err_banned) + (reason.isEmpty() ? "" : ": " + reason));
+            } else {
+                showError(messageFor(json, error));
+            }
         });
     }
 
@@ -295,23 +281,20 @@ public class AuthActivity extends AppCompatActivity {
         }
         setBusy(true);
         final JSONObject payload = body;
-        io.execute(() -> {
-            final ApiClient.Result r = ApiClient.post("/api/auth/register.php", payload);
-            main.post(() -> {
-                if (isFinishing()) return;
-                setBusy(false);
-                if (r.ok()) {
-                    pendingEmail = email.toLowerCase();
-                    if (resend) {
-                        Toast.makeText(this, R.string.code_resent, Toast.LENGTH_SHORT).show();
-                    } else {
-                        confirmCode.setText("");
-                        show(CONFIRM);
-                    }
+        ApiClient.post(this, "/api/auth/register.php", payload, (json, error) -> {
+            if (isFinishing()) return;
+            setBusy(false);
+            if (error == null && json != null) {
+                pendingEmail = email.toLowerCase();
+                if (resend) {
+                    Toast.makeText(this, R.string.code_resent, Toast.LENGTH_SHORT).show();
                 } else {
-                    showError(messageFor(r));
+                    confirmCode.setText("");
+                    show(CONFIRM);
                 }
-            });
+            } else {
+                showError(messageFor(json, error));
+            }
         });
     }
 
@@ -343,14 +326,11 @@ public class AuthActivity extends AppCompatActivity {
         }
         setBusy(true);
         final JSONObject payload = body;
-        io.execute(() -> {
-            final ApiClient.Result r = ApiClient.post("/api/auth/register_confirm.php", payload);
-            main.post(() -> {
-                if (isFinishing()) return;
-                setBusy(false);
-                if (r.ok()) success();
-                else showError(messageFor(r));
-            });
+        ApiClient.post(this, "/api/auth/register_confirm.php", payload, (json, error) -> {
+            if (isFinishing()) return;
+            setBusy(false);
+            if (error == null && json != null) success();
+            else showError(messageFor(json, error));
         });
     }
 
@@ -384,9 +364,12 @@ public class AuthActivity extends AppCompatActivity {
         finish();
     }
 
-    private String messageFor(ApiClient.Result r) {
-        if (r.network) return getString(R.string.err_network);
-        if (r.error != null && !r.error.isEmpty()) return r.error;
+    private String messageFor(JSONObject json, String error) {
+        if (error != null && !error.isEmpty()) return error;
+        if (json != null) {
+            String e = json.optString("error", "");
+            if (!e.isEmpty()) return e;
+        }
         return getString(R.string.err_generic);
     }
 
