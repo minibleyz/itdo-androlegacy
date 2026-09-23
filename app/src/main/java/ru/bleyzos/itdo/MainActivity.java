@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
                 openAuth();
             }
         }
+        handleOpenPageExtra(getIntent());
         updateChrome();
     }
 
@@ -245,6 +246,29 @@ public class MainActivity extends AppCompatActivity implements DrawerController.
         if (intent != null && Intent.ACTION_VIEW.equals(intent.getAction()) && intent.getData() != null) {
             webView.loadUrl(initialUrl(intent));
         }
+        handleOpenPageExtra(intent);
+    }
+
+    /**
+     * Native screens (Streams, Games, ...) that don't have a full native player/engine
+     * fall back to the site's own SPA page: MainActivity.newIntent(ctx, "streams") gets you
+     * there directly instead of landing on the feed.
+     */
+    static final String EXTRA_OPEN_PAGE = "open_page";
+
+    static Intent newIntent(android.content.Context ctx, String page) {
+        Intent i = new Intent(ctx, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        i.putExtra(EXTRA_OPEN_PAGE, page);
+        return i;
+    }
+
+    private void handleOpenPageExtra(Intent intent) {
+        if (intent == null) return;
+        String page = intent.getStringExtra(EXTRA_OPEN_PAGE);
+        if (page == null) return;
+        intent.removeExtra(EXTRA_OPEN_PAGE);
+        runInSpa("navigate('" + page + "')");
     }
 
     @Override

@@ -151,4 +151,48 @@
     <string name="settings_last_seen_nobody">Никто</string>
     <string name="settings_theme">Тёмная тема</string>
     <string name="settings_save">Сохранить</string>
-    <string name="settings_saved">Настройки сохранены</string></resources>
+    <string name="settings_saved">Настройки сохранены</string>
+    <!-- Explore / Search -->
+    <string name="search_hint">Найти людей и посты…</string>
+    <string name="search_hint_long">Введите не менее 2 символов, чтобы начать поиск</string>
+    <string name="search_tab_users">Люди</string>
+    <string name="search_tab_posts">Посты</string>
+    <string name="search_no_results">Ничего не найдено</string>
+
+    <!-- Articles -->
+    <string name="articles_views">%1$d просмотров</string>
+    <string name="articles_likes">%1$d лайков</string>
+    <string name="article_like">Нравится</string>
+    <string name="article_liked">Нравится ✓</string>
+
+    <!-- Events -->
+    <string name="events_location">Место: %1$s</string>
+    <string name="events_attendees">%1$d участников</string>
+    <string name="events_starts">Начало: %1$s</string>
+
+    <!-- Playlists -->
+    <string name="playlists_items_count">%1$d элементов</string>
+    <string name="playlists_default">Системный</string>
+    <string name="playlists_open_in_app">Открыть на сайте</string>
+
+    <!-- Streams -->
+    <string name="streams_live">В ЭФИРЕ</string>
+    <string name="streams_viewers">%1$d зрителей</string>
+    <string name="streams_watch">Смотреть на сайте</string>
+
+    <!-- Games -->
+    <string name="games_best_score">Лучший счёт: %1$d</string>
+    <string name="games_wins">Побед: %1$d</string>
+    <string name="games_play">Играть</string>
+    <string name="games_leaderboard">Таблица лидеров</string>
+
+    <!-- Support -->
+    <string name="support_new_ticket">Новое обращение</string>
+    <string name="support_subject_hint">Тема</string>
+    <string name="support_message_hint">Опишите проблему</string>
+    <string name="support_create">Отправить</string>
+    <string name="support_reply_hint">Ваш ответ…</string>
+    <string name="support_status_open">Открыт</string>
+    <string name="support_status_closed">Закрыт</string>
+    <string name="support_no_tickets">У вас пока нет обращений</string>
+</resources>

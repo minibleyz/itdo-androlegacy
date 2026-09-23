@@ -73,20 +73,20 @@ final class DrawerItem {
     /** Everything that used to live in the bottom navigation, the "more" menu and the sidebar. */
     static final List<DrawerItem> ALL = Collections.unmodifiableList(Arrays.asList(
             page("feed", R.string.nav_feed, R.drawable.ic_home),
-            page("explore", R.string.nav_explore, R.drawable.ic_search),
+            activity("explore", R.string.nav_explore, R.drawable.ic_search, ExploreActivity.class),
             activity("notifications", R.string.nav_notifications, R.drawable.ic_notifications, NotificationsActivity.class),
             page("messages", R.string.nav_messages, R.drawable.ic_chat),
             page("profile", R.string.nav_profile, R.drawable.ic_person),
 
             section(R.string.section_media),
-            page("streams", R.string.nav_streams, R.drawable.ic_live_tv),
+            activity("streams", R.string.nav_streams, R.drawable.ic_live_tv, StreamsActivity.class),
             activity("clips", R.string.nav_clips, R.drawable.ic_clips, ClipsActivity.class),
-            page("articles", R.string.nav_articles, R.drawable.ic_article),
-            page("events", R.string.nav_events, R.drawable.ic_event),
-            page("playlists", R.string.nav_playlists, R.drawable.ic_playlist),
+            activity("articles", R.string.nav_articles, R.drawable.ic_article, ArticlesActivity.class),
+            activity("events", R.string.nav_events, R.drawable.ic_event, EventsActivity.class),
+            activity("playlists", R.string.nav_playlists, R.drawable.ic_playlist, PlaylistsActivity.class),
 
             section(R.string.section_fun),
-            page("games", R.string.nav_games, R.drawable.ic_games),
+            activity("games", R.string.nav_games, R.drawable.ic_games, GamesActivity.class),
             activity("pixelbattle", R.string.nav_pixelbattle, R.drawable.ic_grid, PixelBattleActivity.class),
 
             section(R.string.section_itdo),
@@ -98,7 +98,7 @@ final class DrawerItem {
 
             section(0),
             activity("settings", R.string.nav_settings, R.drawable.ic_settings, SettingsActivity.class),
-            url("support", R.string.nav_support, R.drawable.ic_help, "/support.html", false),
+            activity("support", R.string.nav_support, R.drawable.ic_help, SupportActivity.class),
             url("admin", R.string.nav_admin, R.drawable.ic_admin, "/admin.html", true),
             new DrawerItem("logout", R.string.nav_logout, R.drawable.ic_logout, LOGOUT, null, null, false)
     ));
